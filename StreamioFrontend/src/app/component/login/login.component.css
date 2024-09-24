@@ -1,0 +1,78 @@
+.register-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+
+    .register-content {
+        display: flex;
+        flex-direction: column;
+        padding: 20px;
+
+    }
+
+    .formClass{
+        display: flex;
+        flex-direction: column;
+    }
+
+
+    .lbuttons {
+        display: flex;
+        justify-content: center;
+        /* Pushes buttons to opposite ends */
+        align-items: center;
+        width: 100%;
+        /* Ensures buttons span the full width */
+    }
+
+    .button-container,
+    .example-button-container {
+        flex-basis: 45%;
+        /* Ensures both buttons have equal width */
+    }
+
+    .cancel-button {
+        background-color: red;
+        /* Red background for Cancel button */
+        color: white;
+        width: 100%;
+        /* Button takes full container width */
+
+
+    }
+
+    .login-button {
+        background-color: blue;
+        /* Blue background for Register button */
+        color: white;
+        width: 100%;
+        /* Button takes full container width */
+
+    }
+
+    h1 {
+        text-align: center;
+        /* Center-aligns the User Registration text */
+    }
+
+    .logo {
+        display: flex;
+        /* Enables flexbox for centering */
+        justify-content: center;
+        /* Centers the content horizontally */
+        align-items: center;
+        /* Centers the content vertically if needed */
+        margin-bottom: 20px;
+        /* Adds space below the logo */
+    }
+
+    .logo-img {
+        max-width: 44%;
+        /* Sets the maximum width of the logo */
+        height: auto;
+        /* Maintains the aspect ratio */
+    }
+
+
+}
