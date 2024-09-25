@@ -1,9 +1,0 @@
-
-/* In your header component's CSS */
-.sticky-header {
-    position: sticky;
-    top: 0;
-    z-index: 1000; /* Adjust the z-index as needed */
-    /* background-color: white; Ensure background so content doesn't overlap */
-    background: linear-gradient(180deg, #6694AD 0%, #2D363B 100%);
-}

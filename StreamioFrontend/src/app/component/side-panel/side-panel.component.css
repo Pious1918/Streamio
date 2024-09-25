@@ -1,0 +1,33 @@
+.sidenav {
+  background-color: rgba(255, 255, 255, 0.2); 
+  backdrop-filter: blur(10px); /* Creates a frosted glass effect */
+  -webkit-backdrop-filter: blur(10px); /* For Safari */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional: Adds a subtle shadow */
+  border-right: 1px solid rgba(255, 255, 255, 0.2); /* Optional: Adds a light border */
+}
+
+:host *{
+  transition: all 500ms ease-in-out;
+}
+.sidenav-container {
+  height: 100vh; /* Ensure the sidenav container takes full height */
+}
+.transparent-nav-list {
+  background-color: transparent; /* Make the nav list transparent */
+
+}
+
+.custom-nav-item{
+  border-left: 5px solid;
+  border-left-color: rgb(0, 0, 0,0);
+}
+
+.custom-nav-item:hover {
+  background-color: rgba(255, 255, 255, 0.1); /* Lighten background on hover */
+
+}
+
+.selected-menu-item{
+
+  border-left-color: blue;
+}

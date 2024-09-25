@@ -3,43 +3,37 @@
 @tailwind utilities;
 
 /* Universal styles for the central box */
+.center-box{
+    @apply bg-white bg-opacity-20 backdrop-filter backdrop-blur-lg h-[96vh] shadow-lg  mx-auto max-w-full rounded-lg p-8 overflow-y-auto flex flex-col border border-white border-opacity-30;
+}
 .center-box {
-    @apply bg-white bg-opacity-20 backdrop-filter backdrop-blur-lg h-[90vh] shadow-lg mx-auto mt-9 max-w-full rounded-lg p-8 overflow-y-auto flex flex-col border border-white border-opacity-30;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0, 0, 0, 0.5) rgba(0, 0, 0, 0.1);
 }
 
-/* Customize scrollbar for WebKit browsers (Chrome, Safari, etc.) */
-.center-box::-webkit-scrollbar {
-    width: 8px; /* Set the width of the scrollbar */
-}
 
-.center-box::-webkit-scrollbar-thumb {
-    background-color: rgba(0, 0, 0, 0.5); /* Light black color */
-    border-radius: 10px; /* Rounded corners for the scrollbar thumb */
-}
 
-/* Optional: Change the background of the scrollbar track */
-.center-box::-webkit-scrollbar-track {
-    background-color: rgba(0, 0, 0, 0.1); /* Lighter background for the scrollbar track */
-}
 
-/* Customize scrollbar for Firefox */
-.center-box {
-    scrollbar-width: thin; /* Firefox: set scrollbar width */
-    scrollbar-color: rgba(0, 0, 0, 0.5) rgba(0, 0, 0, 0.1); /* Thumb color and track color */
-}
 
-html, body {
-  @apply h-full m-0 box-border font-mono px-2; /* Adds equal padding on the left and right */
+
+html,
+body {
+    @apply h-full m-0 box-border font-mono px-5 py-2;
+
 }
 
 body {
-  /* background: linear-gradient(to bottom, #15506F, #000000);
-   */
-   background: linear-gradient(180deg, #6694AD 0%, #2D363B 100%);
+
+    background: linear-gradient(180deg, #6694AD 0%, #2D363B 100%);
     font-family: 'JetBrains Mono', monospace;
-  background-attachment: fixed;
-  background-size: cover;
-  overflow-x: hidden;
-  overflow-y: hidden;
-  
+    background-attachment: fixed;
+    background-size: cover;
+    overflow-x: hidden;
+    overflow-y: hidden;
+
 }
+
+
+
+
+
