@@ -1,17 +1,16 @@
-
-
-mat-sidenav-container{
+mat-sidenav-container {
     height: calc(100vh - 65px);
-   
 }
 
-mat-toolbar{
+mat-toolbar {
     position: relative;
     z-index: 10;
 }
 
-.content{
+.content {
     padding: 24px;
+    /* background: rgba(255, 255, 255, 0.3); 
+    backdrop-filter: blur(10px);  */
 }
 
 .custom-toolbar {
@@ -24,7 +23,6 @@ mat-toolbar{
 .custom-button {
     color: white; /* Change button text and icon color to white */
 }
-
 
 .custom-sidenav-container {
     border: 2px solid #3f51b5; /* Change to your desired border color */
@@ -39,6 +37,17 @@ mat-toolbar{
     backdrop-filter: blur(10px); /* Optional: Blur effect for the background */
 }
 
-mat-sidenav ,mat-sidenav-content{
+mat-sidenav, mat-sidenav-content {
     transition: all 500ms ease-in-out;
+}
+
+/* Media Query for Smaller Screens */
+@media (max-width: 768px) {
+    mat-sidenav {
+        width: 70px; /* Adjust sidenav width for smaller screens */
+    }
+
+    mat-sidenav-content {
+        margin-left: 70px; /* Adjust content margin for smaller screens */
+    }
 }

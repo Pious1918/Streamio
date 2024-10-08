@@ -1,0 +1,57 @@
+<!-- 
+<h1 mat-dialog-title>Edit Details</h1>
+<div mat-dialog-content>
+
+    <mat-form-field>
+        <input type="text" matInput value="{{inputdata.name}}">
+    </mat-form-field>
+    < <mat-form-field>
+        <input type="text" matInput value="{{inputdata.email}}">
+    </mat-form-field> -->
+    <!-- <mat-form-field>
+        <input type="text" matInput value="{{inputdata.phonenumber}}">
+    </mat-form-field>
+    <mat-form-field>
+        <input type="text" matInput value="{{inputdata.country}}">
+    </mat-form-field> -->
+
+<!-- </div>
+
+<div mat-dialog-actions>
+
+    <button mat-raised-button (click)="closepopup()">Close</button>
+    <button mat-raised-button (click)="closepopup()">Update</button>
+</div>  -->
+
+
+
+
+
+
+<h1 mat-dialog-title>Edit Details</h1>
+<form (ngSubmit)="updateUser(inputdata)">
+  <div mat-dialog-content>
+    <mat-form-field>
+      <input type="text" matInput [(ngModel)]="inputdata.name" name="name">
+    </mat-form-field>
+
+    <!-- Uncomment if needed
+    <mat-form-field>
+      <input type="text" matInput [(ngModel)]="inputdata.email" name="email">
+    </mat-form-field>
+    -->
+
+    <mat-form-field>
+      <input type="text" matInput [(ngModel)]="inputdata.phonenumber" name="phonenumber">
+    </mat-form-field>
+
+    <mat-form-field>
+      <input type="text" matInput [(ngModel)]="inputdata.country" name="country">
+    </mat-form-field>
+  </div>
+
+  <div mat-dialog-actions>
+    <button mat-raised-button type="button" (click)="closepopup()">Close</button>
+    <button mat-raised-button color="primary" type="submit">Update</button>
+  </div>
+</form>

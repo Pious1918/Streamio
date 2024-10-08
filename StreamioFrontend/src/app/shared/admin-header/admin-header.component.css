@@ -1,0 +1,56 @@
+mat-sidenav-container {
+    height: calc(100vh - 65px);
+}
+
+mat-toolbar {
+    position: relative;
+    z-index: 10;
+}
+
+.content {
+    padding: 24px;
+    background-color: #2e2e2e; /* Light dark shade */
+    color: #ffffff; /* Ensure text is visible on dark background */
+    /* You can uncomment the backdrop-filter and background if you still want that effect */
+    /* backdrop-filter: blur(10px); */
+}
+
+
+.custom-toolbar {
+    background: linear-gradient(180deg, #6694AD 0%, #2D363B 100%);
+    border-radius: 10px; /* Adjust the radius as needed for rounding */
+    padding: 0 16px; /* Optional: Add padding for spacing */
+    border: 2px solid black; /* Optional: Add border color */
+}
+
+.custom-button {
+    color: white; /* Change button text and icon color to white */
+}
+
+.custom-sidenav-container {
+    border: 2px solid #3f51b5; /* Change to your desired border color */
+    border-radius: 8px; /* Optional: Add rounding to the corners */
+    background-color: rgba(255, 255, 255, 0.2); /* Semi-transparent background color */
+    backdrop-filter: blur(10px); /* Blurred background effect */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Optional: Add shadow for depth */
+}
+
+.transparent-sidenav {
+    background-color: rgba(255, 255, 255, 0.2); /* Semi-transparent background for sidenav */
+    backdrop-filter: blur(10px); /* Optional: Blur effect for the background */
+}
+
+mat-sidenav, mat-sidenav-content {
+    transition: all 500ms ease-in-out;
+}
+
+/* Media Query for Smaller Screens */
+@media (max-width: 768px) {
+    mat-sidenav {
+        width: 70px; /* Adjust sidenav width for smaller screens */
+    }
+
+    mat-sidenav-content {
+        margin-left: 70px; /* Adjust content margin for smaller screens */
+    }
+}

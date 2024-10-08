@@ -1,13 +1,16 @@
 import { Component, signal } from '@angular/core';
 import { HeaderComponent } from '../header/header.component';
 import {MatSidenavModule} from '@angular/material/sidenav';
-import { CommonModule } from '@angular/common';
+import { AsyncPipe, CommonModule } from '@angular/common';
 
 import { MatIconModule } from '@angular/material/icon'
 import { MatListModule } from '@angular/material/list'
-import { RouterOutlet } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
 
 import { RouterModule } from '@angular/router';  // Import RouterModule
+import { select, Store } from '@ngrx/store';
+import { selectUser } from '../../store/user.selector';
+import { Observable } from 'rxjs';
 
 export type MenuItem={
   icon:string;
@@ -18,12 +21,17 @@ export type MenuItem={
 @Component({
   selector: 'app-side-panel',
   standalone: true,
-  imports: [HeaderComponent ,MatSidenavModule , CommonModule , MatListModule , MatIconModule ,RouterModule],
+  imports: [HeaderComponent ,MatSidenavModule , CommonModule , MatListModule , MatIconModule ,RouterModule, AsyncPipe],
   templateUrl: './side-panel.component.html',
   styleUrl: './side-panel.component.css'
 })
 export class SidePanelComponent {
   
+  user$!:Observable<any>
+  constructor(private router:Router ,private store:Store){
+
+    this.user$ = this.store.pipe(select(selectUser))
+  }
 
 menuItems = signal<MenuItem[]>([
 
@@ -76,16 +84,16 @@ menuItems = signal<MenuItem[]>([
     icon : "subscriptions",
     label:'Subscriptions',
     route:'subscriptions'
-  },
-  {
-    icon : "logout",
-    label:'Signout',
-    route:'content'
-  },
+  }
 
   
 ])
 
+onLogout(){
+
+  localStorage.removeItem('authtoken')
+  this.router.navigate(['/login'])
+}
 
 }
 

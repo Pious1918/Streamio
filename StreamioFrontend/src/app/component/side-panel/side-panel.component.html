@@ -1,6 +1,22 @@
+
+
+
+
+<div class="sidenav-header">
+    <img width="100" height="100" src="assets/avathar.jpg" alt="">
+    <div class="header-text">
+        <h2>Welcome</h2>
+        <p>{{ (user$ | async)?.userProfile?.username  }}</p>
+    </div>
+</div>
 <mat-nav-list class="transparent-nav-list">
-    <a mat-list-item *ngFor="let item of menuItems()" [routerLink]="item.route" class="custom-nav-item" routerLinkActive="selected-menu-item">
+    <a mat-list-item  *ngFor="let item of menuItems()" [routerLink]="item.route"  class="custom-nav-item" routerLinkActive="selected-menu-item">
         <mat-icon matListItemIcon>{{item.icon}}</mat-icon>
         <span matListItemTitle >{{item.label}}</span>
     </a>
+    <a mat-list-item class="custom-nav-item" routerLinkActive="selected-menu-item" (click)="onLogout()">
+        <mat-icon matListItemIcon>exit_to_app</mat-icon> 
+        <span matListItemTitle >Signout</span>
+    </a>
+    
 </mat-nav-list>

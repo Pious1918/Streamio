@@ -1,0 +1,67 @@
+<div class="center-box">
+
+
+    <div class="register-container">
+
+        <div class="register-content">
+
+            
+
+            <!-- logo div starts -->
+            <div class="logo">
+                <img mat-card-image src="assets/logored.png" alt="Streamio Logo" class="logo-img">
+            </div>
+            <!-- logo div ends -->
+            <h1>Admin Login</h1>
+
+            <!-- form starts -->
+            <form class="formClass" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                <mat-form-field>
+                    <mat-label>Enter your Email</mat-label>
+                    <input matInput type="email" formControlName="email">
+                    <mat-error
+                    *ngIf="loginForm.get('email')?.touched && loginForm.get('email')?.hasError('required')">
+                    Email is required
+                </mat-error>
+                </mat-form-field>
+             
+                <mat-form-field>
+                    <mat-label>Enter your Password</mat-label>
+                    <input matInput type="password" formControlName="password">
+                    <mat-error
+                    *ngIf="loginForm.get('password')?.touched && loginForm.get('password')?.hasError('required')">
+                    Password is required
+                </mat-error>
+                </mat-form-field>
+              
+
+              
+                <!-- div for the buttons -->
+                <div class="lbuttons">
+            
+    
+                    <div class="example-button-container">
+                        <button mat-fab extended class="login-button" type="submit">
+    
+                            Login
+                        </button>
+                    </div>
+                </div>
+                <!-- button div ends here -->
+
+            </form>
+            <!-- form ends -->
+        
+        </div>
+
+
+
+    </div>
+
+
+
+
+
+
+
+</div>

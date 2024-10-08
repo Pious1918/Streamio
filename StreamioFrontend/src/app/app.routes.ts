@@ -14,34 +14,65 @@ import { ReportedComponent } from './pages/reported/reported.component';
 import { RevenueComponent } from './pages/revenue/revenue.component';
 import { PlaylistComponent } from './pages/playlist/playlist.component';
 import { SubscriptionsComponent } from './pages/subscriptions/subscriptions.component';
+import { AuthService } from './service/auth.service';
+import { AdminDashComponent } from './pages/admin-dash/admin-dash.component';
+import { AdminHeaderComponent } from './shared/admin-header/admin-header.component';
+import { UserListComponent } from './pages/user-list/user-list.component';
+import { AdminReportsComponent } from './pages/admin-reports/admin-reports.component';
+import { AdminRevenueComponent } from './pages/admin-revenue/admin-revenue.component';
+import { AdminRegisterComponent } from './component/admin-register/admin-register.component';
+import { AdminPanelComponent } from './component/admin-panel/admin-panel.component';
 
-export const routes: Routes = [
-    // Redirect the empty path to 'home'
-    { path: '', redirectTo: 'home', pathMatch: 'full' },
-
-    // Route with the header layout and child routes
+export const userRoutes: Routes = [
+    // User routes with the header layout and child routes
     {
-        path: '',
-        component: HeaderComponent,
-        children: [
-            { path: 'home', component: HomeComponent },
-            { path: 'content', component: ContentComponent },
-            { path: 'profile', component: ProfileComponent },
-            { path: 'likedv', component: LikedVideosComponent },
-            { path: 'yourv', component: YourVideosComponent },
-            { path: 'history', component: HistoryComponent },
-            { path: 'report', component: ReportedComponent },
-            { path: 'revenue', component: RevenueComponent },
-            { path: 'playlist', component: PlaylistComponent },
-            { path: 'subscriptions', component: SubscriptionsComponent },
-        ]
+      path: '',
+      component: HeaderComponent,
+      canActivate: [AuthService], // Optional guard for all user routes
+      children: [
+        { path: 'home', component: HomeComponent, canActivate: [AuthService] },
+        { path: 'content', component: ContentComponent, canActivate: [AuthService] },
+        { path: 'profile', component: ProfileComponent, canActivate: [AuthService] },
+        { path: 'likedv', component: LikedVideosComponent, canActivate: [AuthService] },
+        { path: 'yourv', component: YourVideosComponent, canActivate: [AuthService] },
+        { path: 'history', component: HistoryComponent, canActivate: [AuthService] },
+        { path: 'report', component: ReportedComponent, canActivate: [AuthService] },
+        { path: 'revenue', component: RevenueComponent, canActivate: [AuthService] },
+        { path: 'playlist', component: PlaylistComponent, canActivate: [AuthService] },
+        { path: 'subscriptions', component: SubscriptionsComponent, canActivate: [AuthService] },
+      ]
     },
-
-    // Example routes outside of the layout
+    
+    // Login and Register routes (outside the layout)
     { path: 'login', component: LoginComponent },
     { path: 'register', component: RegisterComponent },
-
+  ];
+  
+  export const adminRoutes: Routes = [
+    // Admin routes with the admin layout
+    {
+      path: 'admin',
+      component: AdminHeaderComponent,
+  // Optional guard for admin authentication
+      children: [
+        { path: 'admindash', component: AdminDashComponent },
+        { path: 'userlist', component: UserListComponent },
+        { path: 'userreport', component: AdminReportsComponent },
+        { path: 'adminrevenue', component: AdminRevenueComponent },
+      ]
+    },
+  
+    // Admin login route (outside the layout)
+    { path: 'adminlogin', component: AdminPanelComponent },
+    { path: 'adminregister', component: AdminRegisterComponent },
+  ];
+  
+  // Main Routes that include both user and admin routes
+  export const routes: Routes = [
+    ...userRoutes, // Include user routes
+    ...adminRoutes, // Include admin routes
+  
     // Wildcard route to handle undefined paths (optional)
     { path: '**', redirectTo: 'home', pathMatch: 'full' }
-];
-
+  ];
+  

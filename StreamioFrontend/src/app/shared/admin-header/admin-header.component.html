@@ -1,0 +1,19 @@
+
+
+<mat-toolbar class="mat-elevation-z3 custom-toolbar">
+    <h1>Admin Panel</h1>
+    <button mat-icon-button (click)="collapsed.set(!collapsed())" class="custom-button">
+        <mat-icon>menu</mat-icon>
+    </button>
+
+</mat-toolbar>
+
+<mat-sidenav-container class="mt-2 custom-sidenav-container">
+    <mat-sidenav  opened mode="side" [style.width]="sidenavWidth()" class="transparent-sidenav">
+        <app-admin-side-panel></app-admin-side-panel>
+    </mat-sidenav>
+
+    <mat-sidenav-content class="content" [style.margin-left]="sidenavWidth()">
+        <router-outlet></router-outlet>  <!-- Add router-outlet here -->
+    </mat-sidenav-content>
+</mat-sidenav-container>

@@ -1,0 +1,4 @@
+.backy{
+    background: rgba(255, 255, 255, 0.3); /* Frosted glass effect */
+    backdrop-filter: blur(10px); /* Optional: Add blur for frosted effect */
+}

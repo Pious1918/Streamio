@@ -1,0 +1,89 @@
+.profile-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* height: 100vh; */
+    
+  }
+  mat-card{
+    background-color: transparent;
+  }
+  .profile-card {
+    width: 500px;
+   
+    padding: 4px;
+    margin-bottom: 10px;
+  }
+  
+  .profile-header {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+  
+  .avatar {
+    border-radius: 50%;
+    width: 100px;
+    /* height: 150px; */
+  }
+  
+  .form-container {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+  
+  .row-container {
+    display: flex;
+    gap: 5px;
+  }
+  
+  .half-width {
+    flex: 1;
+  }
+  
+  mat-form-field {
+    height: 70px; 
+  }
+/* mat-form-field input {
+  font-size: 14px; 
+  padding: 0 0px; 
+} */
+
+  /* Container for all buttons */
+.button-container {
+  display: flex;
+  justify-content: center; /* Center the edit button */
+}
+
+/* Edit button style when it's centered */
+.button-container button {
+  width: 100px; /* Decrease the width of the Edit button */
+  border-radius: 4px; /* Decrease the border radius */
+
+}
+
+/* Container for Update and Cancel buttons */
+.edit-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px; /* Add space between the buttons */
+}
+
+/* Styling for the Update and Cancel buttons */
+.edit-buttons button {
+  width: 80px; /* Decrease the width of Update and Cancel buttons */
+}
+
+/* Container for the button to center it */
+.img-button {
+  display: flex;
+  justify-content: center; /* Center the button */
+  margin-top: 10px; /* Optional: add some space above the button */
+}
+
+/* Styling for the button */
+.img-button button {
+  border-radius: 4px; /* Make the border radius square */
+  width: 150px; /* Optional: set a fixed width for consistency */
+}

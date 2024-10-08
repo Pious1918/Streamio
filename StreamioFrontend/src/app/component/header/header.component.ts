@@ -19,5 +19,15 @@ import {  RouterOutlet } from '@angular/router';
 export class HeaderComponent{
 
   collapsed = signal(true)
-  sidenavWidth = computed(()=> this.collapsed()? `0px` :`250px`)
+  // sidenavWidth = computed(()=> this.collapsed()? `0px` :`250px`)
+  
+
+  sidenavWidth = computed(() => {
+    const isSmallScreen = window.innerWidth < 768; // Define small screen size
+    if (isSmallScreen) {
+      return this.collapsed() ? `0px` : `70px`; // Fully close on collapse, open to 70px if expanded
+    } else {
+      return this.collapsed() ? `0px` : `250px`; // For larger screens, collapse fully or open to 250px
+    }
+  });
 }
