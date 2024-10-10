@@ -22,15 +22,22 @@ import { AdminReportsComponent } from './pages/admin-reports/admin-reports.compo
 import { AdminRevenueComponent } from './pages/admin-revenue/admin-revenue.component';
 import { AdminRegisterComponent } from './component/admin-register/admin-register.component';
 import { AdminPanelComponent } from './component/admin-panel/admin-panel.component';
+import { AdminauthguardService } from './service/adminauthguard.service';
+import { ResultsComponent } from './pages/results/results.component';
 
 export const userRoutes: Routes = [
+  {
+    path: '',
+    redirectTo: '/home',
+    pathMatch: 'full'
+  },
     // User routes with the header layout and child routes
     {
       path: '',
       component: HeaderComponent,
       canActivate: [AuthService], // Optional guard for all user routes
       children: [
-        { path: 'home', component: HomeComponent, canActivate: [AuthService] },
+        { path: 'home', component: HomeComponent },
         { path: 'content', component: ContentComponent, canActivate: [AuthService] },
         { path: 'profile', component: ProfileComponent, canActivate: [AuthService] },
         { path: 'likedv', component: LikedVideosComponent, canActivate: [AuthService] },
@@ -40,8 +47,10 @@ export const userRoutes: Routes = [
         { path: 'revenue', component: RevenueComponent, canActivate: [AuthService] },
         { path: 'playlist', component: PlaylistComponent, canActivate: [AuthService] },
         { path: 'subscriptions', component: SubscriptionsComponent, canActivate: [AuthService] },
+        { path: 'results', component: ResultsComponent, canActivate: [AuthService] },
       ]
     },
+    
     
     // Login and Register routes (outside the layout)
     { path: 'login', component: LoginComponent },
@@ -53,6 +62,7 @@ export const userRoutes: Routes = [
     {
       path: 'admin',
       component: AdminHeaderComponent,
+      canActivate:[AdminauthguardService],
   // Optional guard for admin authentication
       children: [
         { path: 'admindash', component: AdminDashComponent },

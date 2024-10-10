@@ -51,3 +51,22 @@ mat-sidenav, mat-sidenav-content {
         margin-left: 70px; /* Adjust content margin for smaller screens */
     }
 }
+
+.search-container {
+    margin-left: auto;
+    display: flex;
+  }
+  input {
+    padding: 8px;
+    width: 300px;
+    border: 1px solid #ccc;
+    border-radius: 4px 0 0 4px;
+  }
+  .bbutton {
+    padding: 8px 16px;
+    background-color: #f8f8f8;
+    border: 1px solid #ccc;
+    border-left: none;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+  }

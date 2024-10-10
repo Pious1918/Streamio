@@ -7,10 +7,11 @@ import { IuserDocument } from '../models/userModel'
 import jwt from 'jsonwebtoken'; // Correct import statement for jsonwebtoken
 import dotenv from 'dotenv'
 import { IadminDocument } from '../models/adminModel';
+import { IUserService } from '../interfaces/uS.service.interface';
 
 dotenv.config()
 
-export class UserService {
+export class UserService implements IUserService {
 
     private _userRepository!: userRepository;
 
@@ -71,7 +72,7 @@ export class UserService {
     }
 
 
-    async getUser(token: any) {
+    async getUser(token: string): Promise<IuserDocument | null> {
         if (!token) {
             throw new Error("No token provided")
         }
@@ -84,7 +85,8 @@ export class UserService {
             console.log("user iss", user)
             return user
         } catch (error) {
-
+            console.error("Error in getUser:", error); // Log the error for debugging
+            return null; // Ensure null is returned if an error occurs
         }
     }
 
@@ -151,29 +153,29 @@ export class UserService {
     }
 
 
-    async updateProfile(userId:any , updateFields:any):Promise<any>{
+    async updateProfile(userId: any, updateFields: any): Promise<any> {
         try {
-            const updatedFields:any={}
-            console.log("@service",updateFields)
+            const updatedFields: any = {}
+            console.log("@service", updateFields)
             console.log(userId)
-            if(updateFields.name){
-                updatedFields.name=updateFields.name
+            if (updateFields.name) {
+                updatedFields.name = updateFields.name
             }
-            if(updateFields.email){
-                updatedFields.email=updateFields.email
+            if (updateFields.email) {
+                updatedFields.email = updateFields.email
             }
-            if(updateFields.phonenumber){
-                updatedFields.phonenumber=updateFields.phonenumber
+            if (updateFields.phonenumber) {
+                updatedFields.phonenumber = updateFields.phonenumber
             }
-            if(updateFields.country){
-                updatedFields.country=updateFields.country
+            if (updateFields.country) {
+                updatedFields.country = updateFields.country
             }
-            return await this._userRepository.updateProfileByUserId(userId,updatedFields)
-                // name , email, phonenumber , country
+            return await this._userRepository.updateProfileByUserId(userId, updatedFields)
+            // name , email, phonenumber , country
 
         } catch (error) {
-            
+
         }
     }
-    
+
 }

@@ -3,6 +3,7 @@
 import { Request, Response } from "express";
 import { UserService } from "../services/userService";
 import { generateToken } from "../utils/jwtHelper";
+import { IUserController } from "../interfaces/uS.controller.interface";
 
 
 
@@ -10,7 +11,7 @@ import { generateToken } from "../utils/jwtHelper";
 
 
 
-export class UserController{
+export class UserController implements IUserController{
 
     private _userService:UserService
 
@@ -91,7 +92,7 @@ export class UserController{
 
 
     public getUserProfile= async(req:Request ,res:Response)=>{
-        const token = req.headers.authorization?.split(' ')[1]
+        const token:any = req.headers.authorization?.split(' ')[1]
         console.log("usera@11",token)
         const userProfile = await this._userService.getUser(token)
         res.status(200).json({message:'user details',userProfile })

@@ -11,7 +11,8 @@ export interface IuserDocument extends Document{
     role: string; // User role field
     createdAt : Date;
     updatedAt : Date;
-
+    subscribers?: mongoose.Types.ObjectId; // Array of subscribers
+    following?: mongoose.Types.ObjectId;  
 }
 
 
@@ -41,19 +42,27 @@ const userSchema : Schema = new Schema({
         required:true
     },
     profilepicture:{
-        type:String
+        type:String,
+        default:'noImage'
     },
     role:{ 
         type: String, 
-        enum: ['user', 'admin'], 
+        
         default: 'user' 
-    }, // Default role is user
+    }, 
     status:{ 
         type: String, 
        
         default: 'active' 
     }, 
-    
+    subscribers:{
+        type:mongoose.Types.ObjectId,
+        ref:'StreamioUser'
+    },
+    following:{
+        type:mongoose.Types.ObjectId,
+        ref:'StreamioUser'
+    },
     createdAt:{
         type:Date,
         default:Date.now

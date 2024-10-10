@@ -32,11 +32,8 @@ export class UserService {
 
 
   getUserProfile():Observable<any>{
-    const token = localStorage.getItem("authtoken")
-    console.log("toke",token)
-    const headers = new HttpHeaders().set('Authorization',`Bearer ${token}`)
-    console.log("head",headers)
-    return this.http.get(`${this.userServiceUrl}/userprofile`, {headers})
+   
+    return this.http.get(`${this.userServiceUrl}/userprofile`)
   }
 
 
@@ -55,9 +52,20 @@ export class UserService {
   }
 
   updatedData(newData:any){
+    // const token = localStorage.getItem("authtoken")
+    // console.log("toke",token)
+    // const headers = new HttpHeaders().set('Authorization',`Bearer ${token}`)
     console.log("from servie",newData)
-    return this.http.post(`${this.userServiceUrl}/update`,newData)
+    return this.http.post(`${this.userServiceUrl}/update`,newData )
   }
 
+  GetCustomerbycode(code:any){
+    return this.http.get(`${this.userServiceUrl}/getbycode`,code);
+  }
+
+
+  subscribeChannel(channelId:any){
+    return this.http.post(`${this.userServiceUrl}/subscribe`,{channelId});
+  }
 
 }

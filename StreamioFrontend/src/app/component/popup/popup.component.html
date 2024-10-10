@@ -1,57 +1,38 @@
-<!-- 
-<h1 mat-dialog-title>Edit Details</h1>
-<div mat-dialog-content>
-
-    <mat-form-field>
-        <input type="text" matInput value="{{inputdata.name}}">
-    </mat-form-field>
-    < <mat-form-field>
-        <input type="text" matInput value="{{inputdata.email}}">
-    </mat-form-field> -->
-    <!-- <mat-form-field>
-        <input type="text" matInput value="{{inputdata.phonenumber}}">
-    </mat-form-field>
-    <mat-form-field>
-        <input type="text" matInput value="{{inputdata.country}}">
-    </mat-form-field> -->
-
-<!-- </div>
-
-<div mat-dialog-actions>
-
-    <button mat-raised-button (click)="closepopup()">Close</button>
-    <button mat-raised-button (click)="closepopup()">Update</button>
-</div>  -->
-
 
 
 
 
 
 <h1 mat-dialog-title>Edit Details</h1>
-<form (ngSubmit)="updateUser(inputdata)">
+<form [formGroup]="inputForm" (ngSubmit)="updateUser()">
   <div mat-dialog-content>
+    
+    
+      <input type="text" matInput formControlName="userId" hidden>
+    <!-- <img [src]="url" alt="" class="avatar" formControlName="profilepic">
+    <input type="file" (change)="onSelectFile($event)"> -->
     <mat-form-field>
-      <input type="text" matInput [(ngModel)]="inputdata.name" name="name">
-    </mat-form-field>
-
-    <!-- Uncomment if needed
-    <mat-form-field>
-      <input type="text" matInput [(ngModel)]="inputdata.email" name="email">
-    </mat-form-field>
-    -->
-
-    <mat-form-field>
-      <input type="text" matInput [(ngModel)]="inputdata.phonenumber" name="phonenumber">
+      <input type="text" matInput formControlName="name">
+      <mat-error *ngIf="inputForm.get('name')?.hasError('required')">Name is required</mat-error>
     </mat-form-field>
 
     <mat-form-field>
-      <input type="text" matInput [(ngModel)]="inputdata.country" name="country">
+      <input type="text" matInput formControlName="phonenumber">
+      <mat-error *ngIf="inputForm.get('phonenumber')?.hasError('required')">Phone number is required</mat-error>
+      <mat-error *ngIf="inputForm.get('phonenumber')?.hasError('pattern')">Phone number must be numeric</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input type="text" matInput formControlName="country">
+      <mat-error *ngIf="inputForm.get('country')?.hasError('required')">Country is required</mat-error>
     </mat-form-field>
   </div>
 
   <div mat-dialog-actions>
     <button mat-raised-button type="button" (click)="closepopup()">Close</button>
-    <button mat-raised-button color="primary" type="submit">Update</button>
+    <button mat-raised-button color="primary" type="submit" [disabled]="inputForm.invalid">Update</button>
   </div>
 </form>
+
+
+

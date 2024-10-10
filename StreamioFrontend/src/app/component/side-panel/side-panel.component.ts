@@ -11,6 +11,7 @@ import { RouterModule } from '@angular/router';  // Import RouterModule
 import { select, Store } from '@ngrx/store';
 import { selectUser } from '../../store/user.selector';
 import { Observable } from 'rxjs';
+import { ResultsComponent } from '../../pages/results/results.component';
 
 export type MenuItem={
   icon:string;
@@ -21,7 +22,7 @@ export type MenuItem={
 @Component({
   selector: 'app-side-panel',
   standalone: true,
-  imports: [HeaderComponent ,MatSidenavModule , CommonModule , MatListModule , MatIconModule ,RouterModule, AsyncPipe],
+  imports: [HeaderComponent ,MatSidenavModule , CommonModule , MatListModule , MatIconModule ,RouterModule, AsyncPipe,ResultsComponent],
   templateUrl: './side-panel.component.html',
   styleUrl: './side-panel.component.css'
 })
@@ -88,12 +89,21 @@ menuItems = signal<MenuItem[]>([
 
   
 ])
-
+searchQuery: string = '';
+  searchResults: any[] = [];
 onLogout(){
 
   localStorage.removeItem('authtoken')
   this.router.navigate(['/login'])
 }
-
+onSearch(query: string) {
+  this.searchQuery = query;
+  // Simulate search results
+  this.searchResults = [
+    { id: 1, title: 'Result 1 for ' + query },
+    { id: 2, title: 'Result 2 for ' + query },
+    { id: 3, title: 'Result 3 for ' + query },
+  ];
+}
 }
 

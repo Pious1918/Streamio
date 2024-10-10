@@ -39,24 +39,25 @@ export class ProfileComponent implements OnInit {
   ) {
     this.user$ = this.store.pipe(select(selectUser));
   }
-
+  
   ngOnInit(): void {
     // this.initializeForm();
-    this.loadUserData();
-  }
+    this.store.dispatch(loadUserProfile());
 
+    this.user$.subscribe((user:any)=>{
+      if(user && user.updatedProfile) {
+        this.userProfile = user.updatedProfile; // Store the user profile in the variable
+      }else{
+        this.userProfile = user.userProfile; // Store the user profile in the variable
+      }
+      console.log("user is ",user)
+
+    })
+  }
+  
   onEdit(id:any){
     console.log("id is s",id)
     this.openpopup(id)
-  }
-
-  loadUserData():void{
-    this.store.dispatch(loadUserProfile())
-    this.user$.subscribe((user:any)=>{
-      console.log("user is ",user)
-      this.userProfile = user.userProfile; // Store the user profile in the variable
-
-    })
   }
 
   openpopup(code:any){
@@ -66,43 +67,17 @@ export class ProfileComponent implements OnInit {
       data:{
         userId:this.userProfile._id,
         name:this.userProfile.name,
-        // email:this.userProfile.email,
+        profilepic:this.userProfile.profilepicture,
         phonenumber:this.userProfile.phonenumber,
         country:this.userProfile.country,
       }
+    }).afterClosed().subscribe(updatedProfile=>{
+      this.store.dispatch(updateUserProfile({user:updatedProfile}))
+      console.log("updateted ",updateUserProfile)
     })
     console.log('code',code)
   }
 
-  // initializeForm(): void {
-  //   this.editForm = this.fb.group({
-  //     userId: [{ value: '', disabled: false }], // Added userId control, disabled as it's read-only
-
-  //     name: [{ value: '', disabled: false }, [Validators.required]], // Add Validators
-  //     email: [{ value: '', disabled: false }, [Validators.required, Validators.email]],
-  //     phonenumber: [{ value: '', disabled: false }, [Validators.required]],
-  //     country: [{ value: '', disabled: false }, [Validators.required]]
-  //   });
-  // }
-
-
-  // loadUserData(): void {
-  //   this.store.dispatch(loadUserProfile());
-  //   this.user$.subscribe((user: any) => {
-  //     if (user && user.userProfile) {
-  //       console.log("idd", user.userProfile._id)
-  //       this.editForm.patchValue({
-  //         userId: user.userProfile._id,
-  //         name: user.userProfile.name,
-  //         email: user.userProfile.email,
-  //         phonenumber: user.userProfile.phonenumber,
-  //         country: user.userProfile.country
-  //       });
-  //     }else {
-  //       console.error("User or userProfile is undefined");
-  //     }
-  //   });
-  // }
 
 
 
@@ -111,67 +86,11 @@ export class ProfileComponent implements OnInit {
 
 
 
-
-  // toggleEdit(): void {
-  //   this.isDisabled = !this.isDisabled; // Toggle read-only mode
-  //   if (this.isDisabled) {
-  //     // If back to read-only mode, disable the fields
-  //     this.editForm.disable();
-  //     this.loadUserData()
-  //   } else {
-  //     // Enable fields when editing
-  //     console.log("I am ata elas")
-  //     this.editForm.enable();
-  //     this.loadUserData()
-  //   }
-  // }
 
 
   
 
-  // cancelEdit(): void {
-  //   // Reset form values if needed
-  //   this.isDisabled = true;
-  //   this.loadUserData(); // Reload user data to reset changes
-  // }
 
-  // selectFile(): void {
-  //   const fileInput = document.getElementById('fileInput') as HTMLInputElement;
-  //   fileInput.click();
-  // }
-
-  // onFileSelected(event: Event): void {
-  //   const target = event.target as HTMLInputElement;
-  //   const file = target.files?.[0]; // Get the first selected file
-
-  //   if (file) {
-  //     const reader = new FileReader();
-  //     // Read the image file as a data URL
-  //     reader.readAsDataURL(file);
-  //     reader.onload = () => {
-  //       this.selectedImage = reader.result; // Set the image data for preview
-  //     };
-  //   }
-  // }
-
-  // onupdate(): void {
-  //   if (this.editForm.valid) {
-  //     const updatedData = this.editForm.value;
-  //     console.log("Profile updated with:", updatedData);
-  
-  //     // Dispatch the action to update the user profile
-  //     this.store.dispatch(updateUserProfile({ user: updatedData }));
-  // console.log("herearea era")
-  //     // Switch back to read-only mode
-     
-  
-  //     // Optionally reload user data to reflect the changes
-  //     this.loadUserData();
-  //   } else {
-  //     console.error("Form is invalid");
-  //   }
-  // }
-  
 
 
 
